@@ -12,7 +12,7 @@ import java.util.Map;
 @RequestMapping("/api/")
 public class GetController {
     private final WebClient webClient = WebClient.builder().baseUrl("http://numbersapi.com/").build();
-    
+
     @GetMapping("/classify-number")
     @ResponseStatus(HttpStatus.OK)
     public Model getApi(@RequestParam int number){
@@ -23,7 +23,7 @@ public class GetController {
         model.setDigit_sum(number);
         model.setFun_fact(webClient
                 .get()
-                .uri(number + "")
+                .uri(number + "" + "/math")
                 .retrieve()
                 .bodyToMono(String.class)
                 .block()

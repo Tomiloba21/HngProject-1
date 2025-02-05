@@ -80,11 +80,12 @@ public class Model {
     }
 
     public void setProperties() {
-        this.properties.clear();  // Prevent duplicate values
-        this.properties.add(isEven() ? "EVEN" : "ODD");
+        this.properties.clear();
         if (checkArmstrong()){
             this.properties.add("Armstrong");
         }
+        this.properties.add(isEven() ? "EVEN" : "ODD");
+
     }
 
     public int getDigit_sum() {
