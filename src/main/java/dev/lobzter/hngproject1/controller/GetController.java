@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 @RestController
@@ -37,10 +38,11 @@ public class GetController {
 
     @ExceptionHandler(IllegalArgumentException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public Map<String, Object> badRequest(){
-        return Map.of(
-                "number", "alphabet",
-                "error", true
-        );
+    public LinkedHashMap<String, Object> badRequest() {
+        LinkedHashMap<String, Object> errorResponse = new LinkedHashMap<>();
+        errorResponse.put("number", "alphabet");
+        errorResponse.put("error", true);
+        return errorResponse;
     }
+
 }
