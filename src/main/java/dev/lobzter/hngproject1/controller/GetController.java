@@ -4,6 +4,7 @@ package dev.lobzter.hngproject1.controller;
 import dev.lobzter.hngproject1.entity.Model;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.LinkedHashMap;
@@ -36,11 +37,11 @@ public class GetController {
 
 
 
-    @ExceptionHandler(IllegalArgumentException.class)
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public LinkedHashMap<String, Object> badRequest() {
+    public LinkedHashMap<String, Object> badRequest(MethodArgumentTypeMismatchException ex ) {
         LinkedHashMap<String, Object> errorResponse = new LinkedHashMap<>();
-        errorResponse.put("number", "alphabet");
+        errorResponse.put("number",  ex.getValue().toString().trim());
         errorResponse.put("error", true);
         return errorResponse;
     }

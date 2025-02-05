@@ -51,7 +51,7 @@ GET /api/classify-number?number={number}
 
 ```json
 {
-    "number": "alphabet",
+    "number": "{alphabet}",
     "error": true
 }
 ```
